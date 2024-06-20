@@ -3,19 +3,26 @@
 # Determine the directory of the current script, that is, the tiny_gestures directory
 TINY_GESTURES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# download zip file of the dataset
-TRAIN_ZIP_URL="https://drive.google.com/uc?export=download&id=1_Wb7LixfWEZI7jdkVTUy3BSjYM9ALtN2"
-VAL_ZIP_URL="https://drive.google.com/uc?export=download&id=1_STF27fqk5-DEM5U-akvKZsq8Z6elqZ2"
+# Ensure gdown is installed
+pip install gdown
+if [ $? -ne 0 ]; then
+    echo "Failed to install gdown"
+    exit 1
+fi
+
+# Google Drive file IDs
+TRAIN_ZIP_ID="1_Wb7LixfWEZI7jdkVTUy3BSjYM9ALtN2"
+VAL_ZIP_ID="1_STF27fqk5-DEM5U-akvKZsq8Z6elqZ2"
 
 # Download train zip file
-wget -O "$TINY_GESTURES_DIR/images_train.zip" "$TRAIN_ZIP_URL"
+gdown --id "$TRAIN_ZIP_ID" -O "$TINY_GESTURES_DIR/images_train.zip"
 if [ $? -ne 0 ]; then
     echo "Failed to download images_train.zip"
     exit 1
 fi
 
 # Download validation zip file
-wget -O "$TINY_GESTURES_DIR/images_val.zip" "$VAL_ZIP_URL"
+gdown --id "$VAL_ZIP_ID" -O "$TINY_GESTURES_DIR/images_val.zip"
 if [ $? -ne 0 ]; then
     echo "Failed to download images_val.zip"
     exit 1
