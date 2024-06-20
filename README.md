@@ -60,6 +60,17 @@ run `chmod +x step2__start_training.sh` in the terminal.
 
 run `./step2__start_training.sh` to run the script to train.
 
+If you want to stop the training process(training process for this dataset at least should run for  6000 steps, it is terminated by hand not automatically). 
+
+The training time is decided by your GPU & you configuration in yolov4-tiny-custom.cfg, which is descriped in "description.md" file. RTX 4060 will take about 40 minutes to train. While mx150 will takes 5 hours to train.
+
+run this in the terminal:`ps aux | grep darknet` to check the process id of the training process.
+
+and run `pkill darknet` or `kill 12345`to end the training process. 12345 is just an example, it represents the process id of the training process.
+
+
+
+
 
 
 
