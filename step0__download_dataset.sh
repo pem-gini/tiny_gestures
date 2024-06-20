@@ -4,8 +4,8 @@
 TINY_GESTURES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # download zip file of the dataset
-TRAIN_ZIP_URL="https://m365rwthaachende.sharepoint.com/:u:/r/sites/GINI/Freigegebene%20Dokumente/Software%20Development/ai/gesture_recognition/tinyyolov4/dataset/images_train.zip?csf=1&web=1&e=1C1vKA"
-VAL_ZIP_URL="https://m365rwthaachende.sharepoint.com/:u:/r/sites/GINI/Freigegebene%20Dokumente/Software%20Development/ai/gesture_recognition/tinyyolov4/dataset/images_val.zip?csf=1&web=1&e=0KxbV6"
+TRAIN_ZIP_URL="https://drive.google.com/file/d/1_Wb7LixfWEZI7jdkVTUy3BSjYM9ALtN2/view?usp=sharing"
+VAL_ZIP_URL="https://drive.google.com/file/d/1_STF27fqk5-DEM5U-akvKZsq8Z6elqZ2/view?usp=sharing"
 
 # Download train zip file
 wget -O "$TINY_GESTURES_DIR/images_train.zip" "$TRAIN_ZIP_URL"

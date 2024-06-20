@@ -10,7 +10,7 @@ first: `cd` to the root path of the `tiny_gestures`repositiory in the terminal.
 
 second: run`chmod +x set_virtual_environment.sh` in the terminal.
 
-third: run `set_virtual_environment.sh` to install the dependence in the terminal
+third: run `./set_virtual_environment.sh` to install the dependence in the terminal
 
 
 
