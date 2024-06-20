@@ -16,7 +16,7 @@ third: run `./set_virtual_environment.sh` to install the dependence in the termi
 
 # download the dataset
 
-Though the download of the dataset and the decompress of dataset can be done by the script "step0__download_dataset.sh", I still recommend you to download the dataset and decompress it by yourself. Because Using link to download in scripts may be unstable.
+Using link downloads in scripts may not be stable, so I recommend you to download the dataset by yourself and decompress the downloaded zip file by hands.
 
 Just download the dataset and put the zip file in the root path of the `tiny_gestures`repositiory. And decompress the dataset, extract the folders in the root path of the `tiny_gestures`repositiory as well.
 
@@ -37,13 +37,6 @@ images_val.zip:
 https://drive.google.com/file/d/1_STF27fqk5-DEM5U-akvKZsq8Z6elqZ2/view?usp=sharing
 
 
-The steps of running the script to download the dataset is shown below:
-
-`cd` to the root path of the `tiny_gestures`repositiory in the terminal.
-
-run `chmod +x step0__download_dataset.sh` in the terminal.
-
-run `./step0__download_dataset.sh` to run the script to download the dataset.
 
 
 
