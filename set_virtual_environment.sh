@@ -30,7 +30,6 @@ else
     exit 1
 fi
 
-# Deactivate the conda environment
-conda deactivate
+
 
 echo "Environment creation and dependency installation are complete."
