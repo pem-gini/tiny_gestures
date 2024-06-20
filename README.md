@@ -16,10 +16,13 @@ third: run `./set_virtual_environment.sh` to install the dependence in the termi
 
 # download the dataset
 
-Using link downloads in scripts may not be stable, so I recommend you to download the dataset by yourself and decompress the downloaded zip file by hands.
+Using scripts to download the zip file from onedrive & google drive may be unstable, so I recommend you to download the dataset by yourself and unzip the downloaded zip file by hands.
 
-Just download the dataset and put the zip file in the root path of the `tiny_gestures`repositiory. And decompress the dataset, extract the folders in the root path of the `tiny_gestures`repositiory as well.
+Just download the dataset and put the dataset zip file in the root path of the `tiny_gestures`repositiory. Then unzip the dataset, extract the folders in the root path of the `tiny_gestures`repositiory as well. The extracted folders have the same name with its zip file. And all the samples & labels files are in the extracted folders.
 
+There are two dataset compressed file, respectively names as "images_train.zip" & "images_val.zip" .
+
+---
 The download link from onedrive is here: 
 
 images_train.zip:
@@ -27,6 +30,8 @@ https://m365rwthaachende.sharepoint.com/:u:/r/sites/GINI/Freigegebene%20Dokument
 
 images_val.zip:
 https://m365rwthaachende.sharepoint.com/:u:/r/sites/GINI/Freigegebene%20Dokumente/Software%20Development/ai/gesture_recognition/tinyyolov4/dataset/images_val.zip?csf=1&web=1&e=dVnggP
+
+---
 
 the download link from google drive is here:
 
@@ -37,6 +42,28 @@ images_val.zip:
 https://drive.google.com/file/d/1_STF27fqk5-DEM5U-akvKZsq8Z6elqZ2/view?usp=sharing
 
 
+---
+
+After unzip the dataset, the structure of this project folder(tiny_gestures) is like: 
+
+```bash
+├── backup
+├── description.md
+├── detect
+├── images_train
+├── images_val
+├── obj.data
+├── obj.name
+├── read_images_path.py
+├── README.md
+├── requirements.txt
+├── set_virtual_environment.sh
+├── step1__setup_darknet.sh
+├── step2__start_training.sh
+├── step3__start_inference.sh
+├── yolov4-tiny.conv.29
+└── yolov4-tiny-custom.cfg
+```
 
 
 
@@ -59,6 +86,8 @@ run `./step1__setup_darknet.sh` to run the script to make file of the original r
 run `chmod +x step2__start_training.sh` in the terminal.
 
 run `./step2__start_training.sh` to run the script to train.
+
+After execute the `step2__start_training.sh` script, you will get another two txt files under the root path of tiny_gestures: `images_train.txt` and `images_val.txt`. They are designed to capture the image samples' path.
 
 If you want to stop the training process(training process for this dataset at least should run for  6000 steps, it is terminated by hand not automatically). 
 
