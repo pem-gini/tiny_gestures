@@ -4,8 +4,8 @@
 TINY_GESTURES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # download zip file of the dataset
-TRAIN_ZIP_URL="https://drive.google.com/file/d/1_Wb7LixfWEZI7jdkVTUy3BSjYM9ALtN2/view?usp=sharing"
-VAL_ZIP_URL="https://drive.google.com/file/d/1_STF27fqk5-DEM5U-akvKZsq8Z6elqZ2/view?usp=sharing"
+TRAIN_ZIP_URL="https://drive.google.com/uc?export=download&id=1_Wb7LixfWEZI7jdkVTUy3BSjYM9ALtN2"
+VAL_ZIP_URL="https://drive.google.com/uc?export=download&id=1_STF27fqk5-DEM5U-akvKZsq8Z6elqZ2"
 
 # Download train zip file
 wget -O "$TINY_GESTURES_DIR/images_train.zip" "$TRAIN_ZIP_URL"
@@ -18,6 +18,17 @@ fi
 wget -O "$TINY_GESTURES_DIR/images_val.zip" "$VAL_ZIP_URL"
 if [ $? -ne 0 ]; then
     echo "Failed to download images_val.zip"
+    exit 1
+fi
+
+# Ensure the files are fully downloaded
+if [ ! -f "$TINY_GESTURES_DIR/images_train.zip" ] || [ ! -s "$TINY_GESTURES_DIR/images_train.zip" ]; then
+    echo "images_train.zip is not fully downloaded"
+    exit 1
+fi
+
+if [ ! -f "$TINY_GESTURES_DIR/images_val.zip" ] || [ ! -s "$TINY_GESTURES_DIR/images_val.zip" ]; then
+    echo "images_val.zip is not fully downloaded"
     exit 1
 fi
 
