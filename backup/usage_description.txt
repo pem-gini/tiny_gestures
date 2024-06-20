@@ -1,0 +1,1 @@
+this folder "backup" is used to store the trained weights file during or after the training
