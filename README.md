@@ -14,6 +14,14 @@ third: run `set_virtual_environment.sh` to install the dependence in the termina
 
 
 
+# download the dataset
+
+`cd` to the root path of the `tiny_gestures`repositiory in the terminal.
+
+run `chmod +x step0__download_dataset.sh` in the terminal.
+
+run `./step0__download_dataset.sh` to run the script to download the dataset.
+
 
 
 # Preparation for Training
