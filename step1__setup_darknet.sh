@@ -3,13 +3,6 @@
 # Determine the directory of the current script, that is, the tiny_gestures directory
 TINY_GESTURES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Add darknet submodule
-git submodule add https://github.com/AlexeyAB/darknet.git
-if [ $? -ne 0 ]; then
-    echo "Failed to add darknet submodule"
-    exit 1
-fi
-
 # Initialize and update submodules
 git submodule update --init --recursive
 if [ $? -ne 0 ]; then
