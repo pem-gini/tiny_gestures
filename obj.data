@@ -1,5 +1,0 @@
-classes = 7
-train  = /home/jzf/Tasks__Gestures_Classification/tiny_gestures/images_train.txt
-valid  = /home/jzf/Tasks__Gestures_Classification/tiny_gestures/images_val.txt
-names = /home/jzf/Tasks__Gestures_Classification/tiny_gestures/obj.name
-backup = /home/jzf/Tasks__Gestures_Classification/tiny_gestures/backup/

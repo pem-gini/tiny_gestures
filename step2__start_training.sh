@@ -10,9 +10,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Write a file to put classes' labels into it
-echo -e "ok\nstop\npalm\nfist\nlike\npeace\npeace_inv" > "$TINY_GESTURES_DIR/classes.txt"
-
 classes_file="$TINY_GESTURES_DIR/classes.txt"
 
 if [ -f "$classes_file" ]; then
