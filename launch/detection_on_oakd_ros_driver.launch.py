@@ -14,7 +14,11 @@ import launch_ros.descriptions
 def generate_launch_description():
     pkgdir = get_package_share_directory('tiny_gestures')
     pkgParamsDir = os.path.join(pkgdir, 'params')
-    depthai_prefix = get_package_share_directory("depthai_ros_driver")
+    ### DEPTHAI default ros driver (has problems with inference, as the spatial coordinates are very very bad)
+    # depthai_prefix = get_package_share_directory("depthai_ros_driver")
+    ### my own little example launchfile which is a depthai drvier based on an existing working example for yolo spatial v4
+    depthai_prefix = get_package_share_directory("depthai_examples")
+    ########################################################################
     oak_model = "OAK-D-W"
     nnName = "gesture_yolov4tiny_openvino_2022.1_6shave.blob"
     nnresourceBaseFolder = os.path.join(pkgdir, "models")
@@ -51,11 +55,27 @@ def generate_launch_description():
     ###
     ########
     ###
+    ### DEPTHAI default ros driver (has problems with inference, as the spatial coordinates are very very bad)
+    # camera_nodes = IncludeLaunchDescription(
+    #         PythonLaunchDescriptionSource(os.path.join(depthai_prefix, 'launch', 'camera.launch.py')),
+    #         launch_arguments={"name": "oak",
+    #                           "camera_model": oak_model,
+    #                           "params_file": newDepthAiConfig,
+    #                           "parent_frame": "oak-d-base-frame",
+    #                            "cam_pos_x": "0.0",
+    #                            "cam_pos_y": "0.0",
+    #                            "cam_pos_z": "0.0",
+    #                            "cam_roll": "0.0",
+    #                            "cam_pitch": "0.0",
+    #                            "cam_yaw": "0.0",
+    #                            "use_rviz": "False",
+    #                            }.items()
+    #     )
+    ### my own little example launchfile which is a depthai drvier based on an existing working example for yolo spatial v4
     camera_nodes = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource(os.path.join(depthai_prefix, 'launch', 'camera.launch.py')),
+            PythonLaunchDescriptionSource(os.path.join(depthai_prefix, 'launch', 'nick_yolov4_publisher.launch.py')),
             launch_arguments={"name": "oak",
                               "camera_model": oak_model,
-                              "params_file": newDepthAiConfig,
                               "parent_frame": "oak-d-base-frame",
                                "cam_pos_x": "0.0",
                                "cam_pos_y": "0.0",
@@ -64,9 +84,9 @@ def generate_launch_description():
                                "cam_pitch": "0.0",
                                "cam_yaw": "0.0",
                                "use_rviz": "False",
+                               "nnPath": nnblobpath,
                                }.items()
         )
-
     gesture_tracker_node = launch_ros.actions.Node(
             package='tiny_gestures',
             executable='gesture_detection_inference_on_oakd',
@@ -74,12 +94,12 @@ def generate_launch_description():
             output='screen',
             emulate_tty=True,
             parameters=[{
-                ### default rgb / depth
-                # 'rgb_topic': '/oak/rgb/image_raw',
-                # 'depth_topic': '/oak/stereo/image_raw',
+                ### default rgb / depth (rgb should be 416x416)
+                'rgb_topic': '/oak/rgb/image_raw',
+                'depth_topic': '/oak/stereo/image_raw',
                 ### passthrough rgb fro nn pipeline (possibly resized)
-                'rgb_topic': '/oak/nn/passthrough/image_raw',
-                'depth_topic': '/oak/nn/passthrough_depth/image_raw',
+                # 'rgb_topic': '/oak/nn/passthrough/image_raw',
+                # 'depth_topic': '/oak/nn/passthrough_depth/image_raw',
                 'nn_topic': '/oak/nn/spatial_detections',
                 "visualize": True,
             }]

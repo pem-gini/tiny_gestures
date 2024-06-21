@@ -204,7 +204,7 @@ class DetectionRosNode(Node):
             highestResult = detection.results[0]
             if highestResult.hypothesis.score > self.detection_score_treshold:
                 id = int(highestResult.hypothesis.class_id)
-                print(i, highestResult.pose.pose.position)
+                # print(i, id, highestResult.pose.pose.position)
                 extracted.append(OakDDetection(id, classes[id],
                     (detection.bbox.center.position.x, detection.bbox.center.position.y),
                     (detection.bbox.size.x, detection.bbox.size.y), highestResult.hypothesis.score, 
