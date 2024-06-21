@@ -2,3 +2,8 @@ images_train/*
 images_val/*
 images_train.txt
 images_val.txt
+
+
+*.blob
+*.log
+*.pyc
