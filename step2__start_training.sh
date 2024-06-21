@@ -32,10 +32,9 @@ CFG_PATH="$TINY_GESTURES_DIR/yolov4-tiny-custom.cfg"
 WEIGHTS_PATH="$TINY_GESTURES_DIR/yolov4-tiny.conv.29"
 
 # Enter the darknet directory and run the training command
-DARKNET_DIR="$(dirname "$TINY_GESTURES_DIR")/darknet"
-cd "$DARKNET_DIR"
+DARKNET_DIR="$TINY_GESTURES_DIR/darknet"
 
 # Run training command with nohup and redirect output to a log file
-nohup ./darknet detector train "$OBJ_DATA_PATH" "$CFG_PATH" "$WEIGHTS_PATH" -map > "$TINY_GESTURES_DIR/training.log" 2>&1 &
+nohup $DARKNET_DIR/darknet detector train "$OBJ_DATA_PATH" "$CFG_PATH" "$WEIGHTS_PATH" -map > "$TINY_GESTURES_DIR/training.log" 2>&1 &
 
 echo "Training has started. Check training.log for progress."
