@@ -188,7 +188,8 @@ class DetectionRosNode(Node):
         self.publishgestures()
     def parseNNMsg(self, msg : Detection3DArray) -> list[OakDDetection]:
         ### parse detections
-        classes = ["ok","stop","palm","fist","like","peace","peace_inv"]
+        classes = ["fist","like","ok","palm","peace","peace_inv","stop"]
+        # classes = ["ok","stop","palm","fist","like","peace","peace_inv"]
         extracted = []
         header = msg.header
         detection:Detection3D
