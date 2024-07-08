@@ -28,6 +28,7 @@ class KalmanObject:
         self.updated = True
         self.startTime = time.time()
         self.trackedTime = 0.0
+        self.meanObjConfidence = 0.0
 
     def get(self):
         return self.kf.x.tolist()
@@ -37,14 +38,14 @@ class KalmanObject:
 
     def tick(self):
         self.lifecycles = self.lifecycles + 1
-        self.trackedTime += time.time() - self.startTime
+        self.trackedTime = time.time() - self.startTime
 
     def update(self, obj):
         ## set other kwargs from dict
         for key, value in obj.__dict__.items():
             setattr(self, key, value)
         x,y,z = (obj.x, obj.y, obj.z)
-        
+        self.meanObjConfidence = (self.meanObjConfidence * 0.8) + (obj.conf * 0.2)
         self.kf.update(np.array([x, y, z]).reshape(3, 1))
         self.updated = True
         self.misscycles = 0
@@ -83,7 +84,7 @@ class KalmanGestureTracker:
             ### clear upated flag 
             obj.updated = False
             ### delete if necessary
-            if obj.misscycles > 20 or obj.lifecycles > 5 and ratio < 0.3:
+            if obj.misscycles > 10 or obj.lifecycles > 5 and ratio < 0.3:
                 cleanups.append(track_id)
         for key in cleanups:
             # print("##########################################################################")
